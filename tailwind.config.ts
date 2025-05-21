@@ -17,28 +17,29 @@ const config: Config = {
     },
   },
   plugins: [
-      ({addUtilities})=>{
-    const newUtilities = {
-      '.scrollbar-thin':{
-        scrollbarWidth: 'thin',
-        scrollbarColor: 'rgb(31 29 29) black'
-      },
-      '.scrollbar-webkit': {
-        '&::-webkit-scrollbar': {
-          width: '8px'
+    require('tailwindcss/plugin')(function({ addUtilities }: { addUtilities: (utilities: Record<string, any>, options?: { variants?: string[] }) => void }) {
+      const newUtilities = {
+        '.scrollbar-thin':{
+          scrollbarWidth: 'thin',
+          scrollbarColor: 'rgb(31 29 29) black'
         },
-        '&::-webkit-scrollbar-track': {
-          background: 'white'
-        },
-        '&::-webkit-scrollbar-thumb': {
-          backgroundColor: 'rgb(31 41 55)',
-          borderRadius: '20px',
-          border: '1px solid white'
+        '.scrollbar-webkit': {
+          '&::-webkit-scrollbar': {
+            width: '8px'
+          },
+          '&::-webkit-scrollbar-track': {
+            background: 'white'
+          },
+          '&::-webkit-scrollbar-thumb': {
+            backgroundColor: 'rgb(31 41 55)',
+            borderRadius: '20px',
+            border: '1px solid white'
+          }
         }
-      }
-    }
+      };
 
-    addUtilities(newUtilities, ['responsive', 'hover']);
-  }],
+      addUtilities(newUtilities, { variants: ['responsive', 'hover'] });
+    }),
+  ],
 };
 export default config;
